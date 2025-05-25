@@ -1,3 +1,4 @@
+![Build](https://github.com/tuchinanna/homework04/actions/workflows/build.yml/badge.svg)
 ## Laboratory work III
 
 Данная лабораторная работа посвещена изучению систем автоматизации сборки проекта на примере **CMake**
