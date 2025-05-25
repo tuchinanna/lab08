@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(formatter_ex)
 
-add_subdirectory(../formatter_lib formatter)
-
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
