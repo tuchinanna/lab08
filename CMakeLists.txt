@@ -14,7 +14,15 @@ install(TARGETS formatter formatter_ex solver_lib DESTINATION lib)
 
 if(BUILD_TESTS)
   enable_testing()
-  add_subdirectory(third-party/gtest)
+
+  include(FetchContent)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/release-1.12.1.zip
+  )
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+  FetchContent_MakeAvailable(googletest)
+  
   file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
   add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
   target_link_libraries(check formatter formatter_ex solver_lib gtest_main)
