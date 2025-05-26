@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
-project(lab03)
+project(lab05)
+
+option(BUILD_TESTS "Build tests" ON)
 
 add_subdirectory(formatter_lib)
 add_subdirectory(formatter_ex_lib)
@@ -9,3 +11,12 @@ add_subdirectory(solver_application)
 
 install(TARGETS hello_world solver DESTINATION bin)
 install(TARGETS formatter formatter_ex solver_lib DESTINATION lib)
+
+if(BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(third-party/gtest)
+  file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
+  add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
+  target_link_libraries(check formatter formatter_ex solver_lib gtest_main)
+  add_test(NAME check COMMAND check)
+endif()
